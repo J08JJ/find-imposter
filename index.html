@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>추리 게임 - 범인을 찾아라!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-root">
+    <header>
+      <h1>범인을 찾아라!</h1>
+      <p>단서와 증언을 비교해 거짓말을 한 범인을 지목하세요.</p>
+    </header>
+
+    <!-- 사건 브리핑 -->
+    <section id="case-briefing">
+      <h2>사건 브리핑</h2>
+      <p><strong>사건:</strong> 골목길 강도 사건</p>
+      <p><strong>발생 시각:</strong> 2025년 8월 10일 20:20</p>
+      <p><strong>장소:</strong> 중앙시장 뒷골목</p>
+      <p><strong>피해자:</strong> 김철수(35)</p>
+      <div id="case-photo-placeholder">[현장 사진 자리]</div>
+    </section>
+
+    <!-- 메인 레이아웃 -->
+    <div id="layout">
+      <!-- 증거 패널 -->
+      <aside id="evidence-panel">
+        <h3>증거 목록</h3>
+        <ul id="evidence-list">
+          <li data-id="e1">📷 CCTV 캡처 <span class="meta">20:15</span></li>
+          <li data-id="e2">💬 문자 기록 <span class="meta">20:00</span></li>
+          <li data-id="e3"> 피 묻은 장갑 발견</li>
+        </ul>
+
+        <h4>분석 메모</h4>
+        <div id="analysis-box">증거를 클릭하면 상세 내용이 표시됩니다.</div>
+      </aside>
+
+      <!-- 용의자 패널 -->
+      <main id="investigation-panel">
+        <h3>용의자 진술</h3>
+
+        <article class="suspect" id="suspect1">
+          <h4 class="suspect-name">박민수</h4>
+          <p class="suspect-role">피해자의 동료</p>
+          <blockquote>
+            "저는 그날 8시쯤 집에서 드라마 보고 있었어요."
+          </blockquote>
+          <div class="suspect-controls">
+            <button class="mark-lie-btn">거짓말 표시</button>
+            <button class="select-suspect-btn" data-suspect="suspect1">범인 지목</button>
+          </div>
+        </article>
+
+        <article class="suspect" id="suspect2">
+          <h4 class="suspect-name">이정훈</h4>
+          <p class="suspect-role">근처 가게 주인</p>
+          <blockquote>
+            "밤 8시 15분쯤 가게 뒷문으로 쓰레기를 버리러 갔죠."
+          </blockquote>
+          <div class="suspect-controls">
+            <button class="mark-lie-btn">거짓말 표시</button>
+            <button class="select-suspect-btn" data-suspect="suspect2">범인 지목</button>
+          </div>
+        </article>
+
+        <article class="suspect" id="suspect3">
+          <h4 class="suspect-name">최은지</h4>
+          <p class="suspect-role">피해자의 친구</p>
+          <blockquote>
+            "8시 전에는 같이 있었는데, 저는 바로 버스를 타고 집에 갔어요."
+          </blockquote>
+          <div class="suspect-controls">
+            <button class="mark-lie-btn">거짓말 표시</button>
+            <button class="select-suspect-btn" data-suspect="suspect3">범인 지목</button>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <!-- 결과 모달 -->
+  <div id="result-modal" aria-hidden="true">
+    <div id="result-content">
+      <h2>결과</h2>
+      <p id="result-text"></p>
+      <button id="close-result-btn">닫기</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
