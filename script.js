@@ -47,7 +47,9 @@ function makeGameUI() {
     document.body.appendChild(controlDiv);
 
     var msgDiv = document.createElement('div');
-    msgDiv.id = 'game-message';
+
+    msgDiv.id = 'result-modal';
+
     msgDiv.style.position = 'fixed';
     msgDiv.style.top = '50%';
     msgDiv.style.left = '50%';
@@ -65,12 +67,9 @@ function setupAllStages() {
         var stage = stages[i];
         stage.style.display = 'none';
         
-        var title = stage.dataset.title;
-        var time = stage.dataset.time;
-        var place = stage.dataset.place;
-        
         var titleDiv = document.createElement('div');
-        titleDiv.innerHTML = '<h2>' + title + '</h2><p>시간: ' + time + ' | 장소: ' + place + '</p>';
+        titleDiv.innerHTML = '<h2>' + stage.dataset.title + '</h2><p>시간: ' + stage.dataset.time + ' | 장소: ' + stage.dataset.place + '</p>';
+
         stage.insertBefore(titleDiv, stage.firstChild);
 
         var victim = stage.querySelector('.victim');
@@ -108,23 +107,17 @@ function setupSuspectsForStage(stage, stageNum) {
         suspect.style.cursor = 'pointer';
         suspect.style.background = 'white';
 
-        var name = suspect.dataset.name;
-        var age = suspect.dataset.age;
-        var gender = suspect.dataset.gender;
-        var job = suspect.dataset.job;
-        var statement = suspect.dataset.statement;
-        var action = suspect.dataset.action;
-
-        suspect.innerHTML = '<h4>' + name + '</h4>' +
-                           '<p>' + gender + ', ' + age + ' | ' + job + '</p>' +
-                           '<p>진술: "' + statement + '"</p>' +
-                           '<p>행동: ' + action + '</p>';
+        suspect.innerHTML = '<h4>' + suspect.dataset.name + '</h4>' +
+                           '<p>' + suspect.dataset.gender + ', ' + suspect.dataset.age + ' | ' + suspect.dataset.job + '</p>' +
+                           '<p>진술: "' + suspect.dataset.statement + '"</p>' +
+                           '<p>행동: ' + suspect.dataset.action + '</p>';
 
         (function(suspectElement, suspectName, stage) {
             suspectElement.addEventListener('click', function() {
                 chooseSuspect(suspectElement, suspectName, stage);
             });
-        })(suspect, name, stageNum);
+        })(suspect, suspect.dataset.name, stageNum);
+
     }
 }
 
@@ -174,11 +167,7 @@ function goNextStage() {
 
 function showStage(stageNum) {
     for (var i = 0; i < stages.length; i++) {
-        if (i == stageNum) {
-            stages[i].style.display = 'block';
-        } else {
-            stages[i].style.display = 'none';
-        }
+        stages[i].style.display = (i == stageNum) ? 'block' : 'none';
     }
 }
 
@@ -187,19 +176,19 @@ function updateStageNumber() {
 }
 
 function showMessage(msg) {
-    var messageDiv = document.getElementById('game-message');
+    var messageDiv = document.getElementById('result-modal');
     messageDiv.innerHTML = '<div>' + msg + '</div>' +
                           '<button onclick="hideMessage()">확인</button>';
     messageDiv.style.display = 'block';
 }
 
 function hideMessage() {
-    document.getElementById('game-message').style.display = 'none';
+    document.getElementById('result-modal').style.display = 'none';
+ 
 }
 
 function gameEnd() {
     showMessage('게임 완료!');
-    
     document.getElementById('submit-answer').style.display = 'none';
     document.getElementById('next-stage').style.display = 'none';
 }
@@ -211,7 +200,9 @@ function restartGame() {
     showStage(0);
     document.getElementById('submit-answer').style.display = 'block';
     document.getElementById('next-stage').style.display = 'none';
-    document.getElementById('game-message').style.display = 'none';
+
+    document.getElementById('result-modal').style.display = 'none';
+
     
     for (var i = 0; i < stages.length; i++) {
         var suspects = stages[i].querySelectorAll('.suspect');
