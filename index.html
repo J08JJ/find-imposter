@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>추리 게임 - 범인을 찾아라!</title>
+</head>
+<body>
+  <div id="stages">
+
+    
+    <!-- Stage 1 -->
+    <div class="stage" data-title="골목 강도 살인 사건" data-time="21시 10분경" data-place="옥포시장 뒷 골목">
+      <div class="victim" data-name="피해자: 김민수" data-gender="남성" data-age="42세"></div>
+
+      <ul class="evidences">
+        <li data-title="CCTV 영상 캡처" data-info="9시35분경 한 여성이 뒷골목을 빠져나옴."></li>
+        <li data-title="피해자의 마지막 문자" data-info="김철수:'야 9시에 맥주나 마시게 잠깐 나와'"></li>
+        <li data-title="혈흔이 묻은 도구" data-info="골목 구석 쓰레기통에서 혈흔이 묻은 식칼 발견."></li>
+      </ul>
+
+      <div class="suspects">
+        <div class="suspect" 
+             data-name="김철수" data-age="42세" data-gender="남성" data-job="회사원"
+             data-statement="맥주만 마시고 9시30분쯤 골목으로 가는 것까지 보고 집으로 귀가했습니다."
+             data-action="계속 눈물만 흘려서 소통이 힘듦.">
+        </div>
+        <div class="suspect" 
+             data-name="박영희" data-age="38세" data-gender="여성" data-job="상인"
+             data-statement="저는 9시에 설거지하고 바로 집에 귀가했어요."
+             data-action="말투의 높낮이가 불안정하고 땀을 흘림.">
+        </div>
+        <div class="suspect" 
+             data-name="김희수" data-age="29세" data-gender="여성" data-job="직장인"
+             data-statement="야근하고 골목길 지나는데 어떤 남자가 비틀거리면서 가더라고요. 무서워서 얼른 피해 갔죠."
+             data-action="눈을 못 마주치고 손을 꼼지락거림.">
+        </div>
+      </div>
+
+      <div class="culprit" data-name="박영희"></div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="stage" data-title="도서관 도난 사건" data-time="14시경" data-place="아주시립도서관">
+      <div class="victim" data-name="피해자: 도서관" data-gender="도서관 주인" data-age="50"></div>
+
+      <ul class="evidences">
+        <li data-title="도서관 CCTV" data-info="직원은 카운터에서만 근무함. 2시경 한 여성 출입함."></li>
+        <li data-title="카드 출입 기록" data-info="2시경 출입 기록: 최한성"></li>
+        <li data-title="친구의 증언" data-info="2시에 한성이랑 과제하고 있었요."></li>
+      </ul>
+
+      <div class="suspects">
+        <div class="suspect" 
+             data-name="최한성" data-age="23세" data-gender="남성" data-job="대학생"
+             data-statement="저는 그때 지민이랑 과제 하고 있었어요."
+             data-action="자신감 있게 말하며 별 행동 보이지 않음.">
+        </div>
+        <div class="suspect" 
+             data-name="정우성" data-age="40세" data-gender="남성" data-job="도서관 직원"
+             data-statement="저는 카운터에서만 앉아 있었어요."
+             data-action="미간을 찡글거리고 동작이 큼.">
+        </div>
+        <div class="suspect" 
+             data-name="최가영" data-age="23세" data-gender="여성" data-job="대학생"
+             data-statement="카드 잃어버려서 도서관에 못 들어가요."
+             data-action="눈을 마주치고 다리를 떰.">
+        </div>
+      </div>
+
+      <div class="culprit" data-name="최가영"></div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="stage" data-title="거제도 유괴 사건" data-time="13시 30분경" data-place="모초등학교 앞">
+      <div class="victim" data-name="피해자: 여아(미상)" data-gender="여성" data-age="10세 추정"></div>
+
+      <ul class="evidences">
+        <li data-title="머리핀" data-info="현장에서 발견된 아이의 머리핀."></li>
+        <li data-title="CCTV 영상" data-info="어떤 남자와 차에 타는 장면 찍힘."></li>
+        <li data-title="목격자 증언" data-info="아이가 가만히있다가 아빠랑 같이 가는것 같던데요?"></li>
+      </ul>
+
+      <div class="suspects">
+        <div class="suspect" 
+             data-name="김세빈" data-age="35세" data-gender="여성" data-job="학교 교사"
+             data-statement="아이들 하교하는 거 보고 바로 학교로 들어갔어요."
+             data-action="눈시울이 붉어지고 목소리가 떨림.">
+        </div>
+        <div class="suspect" 
+             data-name="황민수" data-age="50세" data-gender="남성" data-job="경비"
+             data-statement="저는 정문 앞을 청소하고 있었어요."
+             data-action="손은 떨리지만 자세는 곧음.">
+        </div>
+        <div class="suspect" 
+             data-name="박민철" data-age="45세" data-gender="남성" data-job="문구점 운영"
+             data-statement="아이를 보긴 했지만 바빠서 그 뒤는 못 봤어요."
+             data-action="가끔씩 말을 더듬으며 멎쩍게 웃음.">
+        </div>
+        <div class="suspect" 
+             data-name="이정호" data-age="42세" data-gender="남성" data-job="녹색 아버지"
+             data-statement="아이가 아빠 기다린다길래 같이 서 있어준 것뿐이에요."
+             data-action="눈을 이리저리 굴리며 한숨을 자주 쉼.">
+        </div>
+      </div>
+
+      <div class="culprit" data-name="이정호"></div>
+    </div>
+
+  </div>
+</body>
+</html>
