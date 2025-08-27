@@ -47,7 +47,9 @@ function makeGameUI() {
     document.body.appendChild(controlDiv);
 
     var msgDiv = document.createElement('div');
+
     msgDiv.id = 'result-modal';
+
     msgDiv.style.position = 'fixed';
     msgDiv.style.top = '50%';
     msgDiv.style.left = '50%';
@@ -67,6 +69,7 @@ function setupAllStages() {
         
         var titleDiv = document.createElement('div');
         titleDiv.innerHTML = '<h2>' + stage.dataset.title + '</h2><p>시간: ' + stage.dataset.time + ' | 장소: ' + stage.dataset.place + '</p>';
+
         stage.insertBefore(titleDiv, stage.firstChild);
 
         var victim = stage.querySelector('.victim');
@@ -114,6 +117,7 @@ function setupSuspectsForStage(stage, stageNum) {
                 chooseSuspect(suspectElement, suspectName, stage);
             });
         })(suspect, suspect.dataset.name, stageNum);
+
     }
 }
 
@@ -180,6 +184,7 @@ function showMessage(msg) {
 
 function hideMessage() {
     document.getElementById('result-modal').style.display = 'none';
+ 
 }
 
 function gameEnd() {
@@ -195,7 +200,9 @@ function restartGame() {
     showStage(0);
     document.getElementById('submit-answer').style.display = 'block';
     document.getElementById('next-stage').style.display = 'none';
+
     document.getElementById('result-modal').style.display = 'none';
+
     
     for (var i = 0; i < stages.length; i++) {
         var suspects = stages[i].querySelectorAll('.suspect');
