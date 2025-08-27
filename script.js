@@ -143,7 +143,7 @@ function chooseSuspect(suspectDiv, name, stageNum) {
 
 function checkAnswer() {
     if (!selectedSuspect) {
-        showMessage('용의자를 먼저 선택해주세요!');
+        showMessage('용의자를 먼저 선택하세요');
         return;
     }
 
