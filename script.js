@@ -1,12 +1,14 @@
 var currentStage = 0;
 var selectedSuspect = null;
 var stages;
+var lives = 3; // 목숨 추가
 
 function startGame() {
     stages = document.querySelectorAll('.stage');
     makeGameUI();
     setupAllStages();
     showStage(0);
+    updateLivesDisplay();
 }
 
 function makeGameUI() {
@@ -24,6 +26,10 @@ function makeGameUI() {
     var stageInfo = document.createElement('div');
     stageInfo.innerHTML = '단계: <span id="current-stage">1</span> / ' + stages.length;
 
+    var livesDiv = document.createElement('div');
+    livesDiv.id = 'lives';
+    livesDiv.style.margin = '5px 0';
+
     var submitBtn = document.createElement('button');
     submitBtn.id = 'submit-answer';
     submitBtn.textContent = '범인 지목하기';
@@ -40,12 +46,14 @@ function makeGameUI() {
     resetBtn.onclick = function() { restartGame(); };
 
     controlDiv.appendChild(stageInfo);
+    controlDiv.appendChild(livesDiv);
     controlDiv.appendChild(submitBtn);
     controlDiv.appendChild(nextBtn);
     controlDiv.appendChild(resetBtn);
     
     document.body.appendChild(controlDiv);
 
+    // 모달창 생성
     var msgDiv = document.createElement('div');
     msgDiv.id = 'result-modal';
     msgDiv.style.position = 'fixed';
@@ -138,14 +146,24 @@ function checkAnswer() {
 
     var currentStageDiv = stages[currentStage];
     var culprit = currentStageDiv.querySelector('.culprit').dataset.name;
-    
+
     if (selectedSuspect == culprit) {
         showMessage('정답입니다!');
         document.getElementById('submit-answer').style.display = 'none';
         document.getElementById('next-stage').style.display = 'block';
     } else {
+        lives--;
+        updateLivesDisplay();
         showMessage('틀렸습니다! 다시 생각해보세요.');
+        if (lives <= 0) {
+            showMessage('목숨이 모두 소진되었습니다. 게임 종료!');
+            document.getElementById('submit-answer').style.display = 'none';
+        }
     }
+}
+
+function updateLivesDisplay() {
+    document.getElementById('lives').textContent = '❤️'.repeat(lives);
 }
 
 function goNextStage() {
@@ -157,7 +175,9 @@ function goNextStage() {
         document.getElementById('next-stage').style.display = 'none';
         updateStageNumber();
     } else {
-        gameEnd();
+        showMessage('게임 완료!');
+        document.getElementById('submit-answer').style.display = 'none';
+        document.getElementById('next-stage').style.display = 'none';
     }
 }
 
@@ -182,21 +202,16 @@ function hideMessage() {
     document.getElementById('result-modal').style.display = 'none';
 }
 
-function gameEnd() {
-    showMessage('게임 완료!');
-    document.getElementById('submit-answer').style.display = 'none';
-    document.getElementById('next-stage').style.display = 'none';
-}
-
 function restartGame() {
     currentStage = 0;
     selectedSuspect = null;
-    updateStageNumber();
+    lives = 3;
+    updateLivesDisplay();
     showStage(0);
     document.getElementById('submit-answer').style.display = 'block';
     document.getElementById('next-stage').style.display = 'none';
-    document.getElementById('result-modal').style.display = 'none';
-    
+    hideMessage();
+
     for (var i = 0; i < stages.length; i++) {
         var suspects = stages[i].querySelectorAll('.suspect');
         for (var j = 0; j < suspects.length; j++) {
